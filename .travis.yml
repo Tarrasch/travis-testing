@@ -1,0 +1,11 @@
+---
+script:
+  - echo "I made it! Great success!"
+  - export foo='mycustomstring'
+notifications:
+  irc:
+    channels:
+      - "irc.freenode.org#scoobydoo"
+    template:
+      - "%{repository} (%{commit}) : %{message} %{foo} "
+      - "Build details: %{build_url}"
