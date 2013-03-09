@@ -9,3 +9,8 @@ notifications:
     template:
       - "%{repository} (%{commit}) : %{message} %{foo} "
       - "Build details: %{build_url}"
+after_success:
+  - echo "yaaaay, now I reveal my secret: ${mysecret}"
+env:
+  global:
+    secure: "QRSwwkxusq7H85A/ZNfODa0rH8cBKYUHqvTZOINggqykwGjjCe+VTrzjWaa4\npHfnJM8vuGmoUc2P+n05MLtwLgqfrgVqWogoHyMhn+296YVX8vM65o+shQAc\nl7nCJgtWmITaCVZCDUs2dRaHMOIIEvo6hYvq9HS09+0BH3dBzlc="
