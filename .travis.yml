@@ -1,14 +1,7 @@
 ---
 script:
-  - echo "I made it! Great success!"
-  - export foo='mycustomstring'
-notifications:
-  irc:
-    channels:
-      - "irc.freenode.org#scoobydoo"
-    template:
-      - "%{repository} (%{commit}) : %{message} %{foo} "
-      - "Build details: %{build_url}"
+  - echo "Running tests... Done! Yay!"
+  - echo "yaaaay, now I reveal my secret: ${mysecret}"
 after_success:
   - echo "yaaaay, now I reveal my secret: ${mysecret}"
 env:
