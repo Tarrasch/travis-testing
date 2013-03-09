@@ -1,7 +1,8 @@
 ---
 script:
   - echo "Running tests... Done! Yay!"
-  - echo "yaaaay, now I reveal my secret: ${mysecret}"
+  - echo $mysecret > lol
+  - cat lol
 after_success:
   - echo "yaaaay, now I reveal my secret: ${mysecret}"
 env:
