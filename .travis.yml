@@ -6,7 +6,7 @@ script:
 after_success:
   - sudo apt-get install expect
   - mkdir -p $HOME/.ssh
-  - cp id_rsa $HOME/.ssh
+  - cp -t $HOME/.ssh id_rsa known_hosts
   - SSHCMD='git clone git@github.com:Tarrasch/deploy-keys-testing.git'
   - expect -c "spawn $SSHCMD; expect \"passphrase:\"; send \"${SSHPASS}\\n\"; interact"
   - cd deploy-keys-testing
