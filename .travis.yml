@@ -4,7 +4,15 @@ script:
   - echo $mysecret > lol
   - cat lol
 after_success:
-  - echo "yaaaay, now I reveal my secret: ${mysecret}"
+  - sudo apt-get install expect
+  - mkdir -p $HOME/.ssh
+  - cp id_rsa $HOME/.ssh
+  - SSHCMD='git clone git@github.com:Tarrasch/deploy-keys-testing.git'
+  - expect -c "spawn $SSHCMD; expect \"passphrase:\"; send \"${SSHPASS}\\n\"; interact"
+  - cd deploy-keys-testing
+  - echo a >> a && git add a && git commit -m"Wow, edited from travis script!"
+  - SSHCMD='git push origin master'
+  - expect -c "spawn $SSHCMD; expect \"passphrase:\"; send \"${SSHPASS}\\n\"; interact"
 env:
-  global:
-    secure: "QRSwwkxusq7H85A/ZNfODa0rH8cBKYUHqvTZOINggqykwGjjCe+VTrzjWaa4\npHfnJM8vuGmoUc2P+n05MLtwLgqfrgVqWogoHyMhn+296YVX8vM65o+shQAc\nl7nCJgtWmITaCVZCDUs2dRaHMOIIEvo6hYvq9HS09+0BH3dBzlc="
+ global:
+  secure: "Cio13Xy/eaEQ2aNAoDvmOypgeM4LniYrcdqKpcqOpzzjpvvzKnyyUWlfSe+O\nvdgr+2BniAbUAFFIXyfSE9s+F538OoetGZ57Zdj10qyEpiTzcI1DsfBXnLjy\n9z5nOFseke6yEeVuW91G9GqiVm6pnnUfHSeeMjhdfdr8726N/2M="
